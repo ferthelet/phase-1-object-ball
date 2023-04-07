@@ -130,3 +130,40 @@ function homeTeamName () {
     return object["home"]["teamName"];
 }
 
+function numPointsScored () {
+    // takes in an argument of a player's name and returns the number of points scored for that player
+}
+
+function shoeSize () {
+    // akes in an argument of the team name and returns an array of that teams colors.
+}
+
+function teamNames () {
+    //operates on the game object to return an array of the team names.
+}
+
+function playerNumbers () {
+    // takes in an argument of a player's name and returns a object of that player's stats
+
+}
+
+function bigShoeRebounds () {
+    // return the number of rebounds associated with the player that has the largest shoe size.
+}
+
+function mostPointsScored () {
+    // Which player has the most points?
+}
+
+function winningTeam () {
+    // Which team has the most points? 
+}
+
+function playerWithLongestName () {
+    // Which player has the longest name?
+}
+
+function doesLongNameStealATon () {
+    // returns true if the player with the longest name had the most steals. 
+}
+
