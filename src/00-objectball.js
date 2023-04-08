@@ -131,28 +131,56 @@ function homeTeamName() {
 
 function numPointsScored(playerName) {
     // takes in an argument of a player's name and returns the number of points scored for that player
-    const allPlayers = {...gameObject().home.players, ...gameObject().home.away};
+    const allPlayers = {...gameObject().home.players, ...gameObject().away.players};
+    debugger;
     return allPlayers[playerName].points;
 }
 
 function shoeSize(playerName) {
     // takes in an argument of a player's name and returns the number of points scored for that player
-    const allPlayers = {...gameObject().home.players, ...gameObject().home.away};
+    const allPlayers = {...gameObject().home.players, ...gameObject().away.players};
     return allPlayers[playerName].size;
 }
 
 function teamColors(teamName) {
     // takes in an argument of the team name and returns an array of that teams colors.
-    return gameObject()[teamName].colors;
+    if (teamName === 'Brooklyn Nets') {
+        return gameObject().home.colors;
+    } else if (teamName === 'Charlotte Hornets') {
+        return gameObject().away.colors;
+    } else {
+        return undefined;
+    }
 }
 
 function teamNames() {
     //operates on the game object to return an array of the team names.
+    const game = gameObject();
+    return [game.home.teamName, game.away.teamName];
 }
 
-function playerNumbers() {
-    // takes in an argument of a player's name and returns a object of that player's stats
+function playerNumbers (teamName) {
+    // takes in an argument of a team name and returns an array of the jersey number's for that team.
+    let numbers = [];
+    let teamPlayers = {};
+    
+    if (teamName === 'Brooklyn Nets') {
+        teamPlayers = {...gameObject().home.players};
+    } else if (teamName === 'Charlotte Hornets') {
+        teamPlayers = {...gameObject().away.players};
+    } else {
+        return undefined;
+    }
+    for (let player in teamPlayers) {
+        numbers.push(teamPlayers[player].number);
+    }
+    return numbers;
+}
 
+function playerStats(playerName) {
+    // takes in an argument of a player's name and returns a object of that player's stats
+    const allPlayers = {...gameObject().home.players, ...gameObject().away.players};
+    return allPlayers[playerName];
 }
 
 function bigShoeRebounds() {
@@ -175,10 +203,15 @@ function doesLongNameStealATon() {
     // returns true if the player with the longest name had the most steals. 
 }
 
-let playerName = 'Alan Anderson';
-let teamName = 'away';
-console.log('Hometeam test: ', homeTeamName());
+let playerName = 'Jeff Adrien';
+let teamName = 'Charlotte Hornets'; // Brooklyn Nets or Charlotte Hornets
+console.log('Home team test: ', homeTeamName());
 console.log(`${playerName} Points: ${numPointsScored(playerName)}`);
 console.log(`${playerName} Shoe size: ${shoeSize(playerName)}`);
-console.log(`Team ${teamName} colors: ${teamColors(teamName)}`);
+console.log(`Team "${teamName}" colors: ${teamColors(teamName)}`);
+console.log('Teams names: ', teamNames());
+console.log(`Team "${teamName}" numbers: ${playerNumbers(teamName)}`);
+console.log(`${playerName} stats:`);
+console.log(playerStats(playerName));
+
 
