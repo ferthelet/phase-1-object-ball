@@ -1,5 +1,5 @@
 function gameObject() {
-// contains and returns a nested object 
+    // contains and returns a nested object 
     return {
         home: {
             // points to a string of the team name.
@@ -37,7 +37,7 @@ function gameObject() {
                     steals: 3,
                     blocks: 1,
                     slamDunks: 15,
-                },
+                },  
                 "Mason Plumlee": {
                     number: 1,
                     size: 19,
@@ -122,48 +122,63 @@ function gameObject() {
 
     }
 }
-console.log(gameObject());
 
-function homeTeamName () {
+function homeTeamName() {
     // returns the name of the home team
     let object = gameObject();
     return object["home"]["teamName"];
 }
 
-function numPointsScored () {
+function numPointsScored(playerName) {
     // takes in an argument of a player's name and returns the number of points scored for that player
+    const allPlayers = {...gameObject().home.players, ...gameObject().home.away};
+    return allPlayers[playerName].points;
 }
 
-function shoeSize () {
-    // akes in an argument of the team name and returns an array of that teams colors.
+function shoeSize(playerName) {
+    // takes in an argument of a player's name and returns the number of points scored for that player
+    const allPlayers = {...gameObject().home.players, ...gameObject().home.away};
+    return allPlayers[playerName].size;
 }
 
-function teamNames () {
+function teamColors(teamName) {
+    // takes in an argument of the team name and returns an array of that teams colors.
+    return gameObject()[teamName].colors;
+}
+
+function teamNames() {
     //operates on the game object to return an array of the team names.
 }
 
-function playerNumbers () {
+function playerNumbers() {
     // takes in an argument of a player's name and returns a object of that player's stats
 
 }
 
-function bigShoeRebounds () {
+function bigShoeRebounds() {
     // return the number of rebounds associated with the player that has the largest shoe size.
 }
 
-function mostPointsScored () {
+function mostPointsScored() {
     // Which player has the most points?
 }
 
-function winningTeam () {
+function winningTeam() {
     // Which team has the most points? 
 }
 
-function playerWithLongestName () {
+function playerWithLongestName() {
     // Which player has the longest name?
 }
 
-function doesLongNameStealATon () {
+function doesLongNameStealATon() {
     // returns true if the player with the longest name had the most steals. 
 }
+
+let playerName = 'Alan Anderson';
+let teamName = 'away';
+console.log('Hometeam test: ', homeTeamName());
+console.log(`${playerName} Points: ${numPointsScored(playerName)}`);
+console.log(`${playerName} Shoe size: ${shoeSize(playerName)}`);
+console.log(`Team ${teamName} colors: ${teamColors(teamName)}`);
 

@@ -1,5 +1,6 @@
 console.log('Advanced debugging example running.')
 debugger
+// watch (game != undefined)
 
 // first, define the function.
 function goodPractices() {
