@@ -132,7 +132,6 @@ function homeTeamName() {
 function numPointsScored(playerName) {
     // takes in an argument of a player's name and returns the number of points scored for that player
     const allPlayers = {...gameObject().home.players, ...gameObject().away.players};
-    debugger;
     return allPlayers[playerName].points;
 }
 
@@ -185,18 +184,54 @@ function playerStats(playerName) {
 
 function bigShoeRebounds() {
     // return the number of rebounds associated with the player that has the largest shoe size.
+    let largest = 0;
+    let playerName = "";
+    const allPlayers = {...gameObject().home.players, ...gameObject().away.players};
+
+    for (let player in allPlayers) {
+        if (allPlayers[player].size > largest) {
+            largest = allPlayers[player].size;
+            playerName = player;
+        }
+    }
+    return allPlayers[playerName].rebounds;
 }
 
 function mostPointsScored() {
     // Which player has the most points?
+    let maxPoints = 0;
+    let playerName = "";
+    const allPlayers = {...gameObject().home.players, ...gameObject().away.players};
+
+    for (let player in allPlayers) {
+        if (allPlayers[player].points > maxPoints) {
+            maxPoints = allPlayers[player].points;
+            playerName = player;
+        }
+    }
+    return playerName;
 }
 
 function winningTeam() {
     // Which team has the most points? 
+    homePlayers = {...gameObject().home.players};
+    awayPlayers = {...gameObject().away.players};    
+
+    function sum(team) {
+        totalPoints = 0;
+        for (let player in team) {
+            totalPoints += team[player].points;
+        }
+        return totalPoints;
+    }
+    return sum(homePlayers) > sum(awayPlayers) ? "Brooklyn Nets" : "Charlotte Hornets";
 }
 
 function playerWithLongestName() {
     // Which player has the longest name?
+    longestName = "";
+
+    
 }
 
 function doesLongNameStealATon() {
@@ -213,5 +248,8 @@ console.log('Teams names: ', teamNames());
 console.log(`Team "${teamName}" numbers: ${playerNumbers(teamName)}`);
 console.log(`${playerName} stats:`);
 console.log(playerStats(playerName));
+console.log("Largest shoes size player rebounds: ", bigShoeRebounds());
+console.log("Which player has the most points? ", mostPointsScored())
+console.log("Which team has the most points? ", winningTeam());
 
 
