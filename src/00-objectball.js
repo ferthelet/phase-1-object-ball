@@ -1,3 +1,5 @@
+// js
+
 function gameObject() {
     // contains and returns a nested object 
     return {
@@ -230,26 +232,45 @@ function winningTeam() {
 function playerWithLongestName() {
     // Which player has the longest name?
     longestName = "";
+    const allPlayers = {...gameObject().home.players, ...gameObject().away.players};
 
-    
+    for (let player in allPlayers) {
+        if (player.length > longestName.length) {
+            longestName = player;
+        }
+    }
+    return longestName;
 }
 
 function doesLongNameStealATon() {
     // returns true if the player with the longest name had the most steals. 
+    const longestName = playerWithLongestName();
+    const allPlayers = {...gameObject().home.players, ...gameObject().away.players};
+    const longestNameSteals = allPlayers[longestName].steals;
+
+    for (let player in allPlayers) {
+        if (allPlayers[player].steals > longestNameSteals) {
+            return false;
+        }
+    }    
+    return true;
 }
 
-let playerName = 'Jeff Adrien';
-let teamName = 'Charlotte Hornets'; // Brooklyn Nets or Charlotte Hornets
-console.log('Home team test: ', homeTeamName());
-console.log(`${playerName} Points: ${numPointsScored(playerName)}`);
-console.log(`${playerName} Shoe size: ${shoeSize(playerName)}`);
-console.log(`Team "${teamName}" colors: ${teamColors(teamName)}`);
-console.log('Teams names: ', teamNames());
-console.log(`Team "${teamName}" numbers: ${playerNumbers(teamName)}`);
-console.log(`${playerName} stats:`);
-console.log(playerStats(playerName));
-console.log("Largest shoes size player rebounds: ", bigShoeRebounds());
-console.log("Which player has the most points? ", mostPointsScored())
-console.log("Which team has the most points? ", winningTeam());
+// testing
 
+// let playerName = 'Jeff Adrien';
+// let teamName = 'Charlotte Hornets'; // Brooklyn Nets or Charlotte Hornets
 
+// console.log('Home team test: ', homeTeamName());
+// console.log(`${playerName} Points: ${numPointsScored(playerName)}`);
+// console.log(`${playerName} Shoe size: ${shoeSize(playerName)}`);
+// console.log(`Team "${teamName}" colors: ${teamColors(teamName)}`);
+// console.log('Teams names: ', teamNames());
+// console.log(`Team "${teamName}" numbers: ${playerNumbers(teamName)}`);
+// console.log(`${playerName} stats:`);
+// console.log(playerStats(playerName));
+// console.log("Largest shoes size player rebounds:", bigShoeRebounds());
+// console.log("Which player has the most points?", mostPointsScored())
+// console.log("Which team has the most points?", winningTeam());
+// console.log("Which player has the longest name?", playerWithLongestName());
+// console.log("player with the longest name had the most steals?", doesLongNameStealATon());
